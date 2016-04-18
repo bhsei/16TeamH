@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Date;
 
+import javax.xml.stream.events.EndDocument;
+
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -35,6 +37,11 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
+
+
+
+import com.chenlb.mmseg4j.analysis.MMSegAnalyzer;
+import com.tyl.util.Const;
 
 /** Simple command-line based search demo. */
 public class SearchFiles {
@@ -87,9 +94,14 @@ public class SearchFiles {
     }
     
     IndexReader reader = IndexReader.open(FSDirectory.open(new File(index)));
-    IndexSearcher searcher = new IndexSearcher(reader);
-    Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_31);
+    for(int i = 0; i < reader.numDocs() + reader.numDeletedDocs();i++){
+    	Document d = reader.document(i);
 
+    		System.out.println(d.get("path"));
+    }
+    IndexSearcher searcher = new IndexSearcher(reader);
+    //Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_31);
+    Analyzer analyzer = new MMSegAnalyzer(Const.cnDataPath);
     BufferedReader in = null;
     if (queries != null) {
       in = new BufferedReader(new InputStreamReader(new FileInputStream(queries), "UTF-8"));
@@ -108,11 +120,12 @@ public class SearchFiles {
         break;
       }
 
+      System.out.println("tyl - " +line);
       line = line.trim();
       if (line.length() == 0) {
         break;
       }
-      
+      System.out.println("tyl - " +line);
       Query query = parser.parse(line);
       System.out.println("Searching for: " + query.toString(field));
             
@@ -157,7 +170,6 @@ public class SearchFiles {
 
     int start = 0;
     int end = Math.min(numTotalHits, hitsPerPage);
-        
     while (true) {
       if (end > hits.length) {
         System.out.println("Only results 1 - " + hits.length +" of " + numTotalHits + " total matching documents collected.");

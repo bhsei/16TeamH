@@ -7,4 +7,5 @@ package com.tyl.util;
 
 public class Const {
 	public static String cnDataPath = "F:\\stoneforest\\work\\workspace\\lucence_github\\src\\test\\resources\\mydata";
+	
 }

@@ -31,6 +31,9 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
+import com.chenlb.mmseg4j.analysis.MMSegAnalyzer;
+import com.tyl.util.Const;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -85,7 +88,8 @@ public class IndexFiles {
       System.out.println("Indexing to directory '" + indexPath + "'...");
 
       Directory dir = FSDirectory.open(new File(indexPath));
-      Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_31);
+     // Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_31);
+      Analyzer analyzer = new MMSegAnalyzer(Const.cnDataPath);
       IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_31, analyzer);
 
       if (create) {

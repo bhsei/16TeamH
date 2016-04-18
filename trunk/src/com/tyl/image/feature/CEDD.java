@@ -338,10 +338,10 @@ public class CEDD implements LireFeature {
 
     public String getStringRepresentation() { // added by mlux
         StringBuilder sb = new StringBuilder(data.length * 2 + 25);
-        /*sb.append("cedd");
+        sb.append("cedd");
         sb.append(' ');
         sb.append(data.length);
-        sb.append(' ');*/
+        sb.append(' ');
         for (double aData : data) {
             sb.append((int) aData);
             sb.append(' ');
