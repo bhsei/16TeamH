@@ -177,7 +177,7 @@ public class IndexFiles {
           // field that is indexed (i.e. searchable), but don't tokenize 
           // the field into separate words and don't index term frequency
           // or positional information:
-          Field pathField = new Field("path", file.getPath(), Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS);
+          Field pathField = new Field("path", file.getName(), Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS);
           pathField.setIndexOptions(IndexOptions.DOCS_ONLY);
           doc.add(pathField);
 

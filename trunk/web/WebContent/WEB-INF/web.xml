@@ -4,21 +4,11 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>imageSearch.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>ImageSearchServlet</display-name>
-    <servlet-name>ImageSearchServlet</servlet-name>
-    <servlet-class>com.tyl.servlet.ImageSearchServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ImageSearchServlet</servlet-name>
-    <url-pattern>/ImageSearchServlet</url-pattern>
-  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>UploadServlet</display-name>
@@ -28,5 +18,45 @@
   <servlet-mapping>
     <servlet-name>UploadServlet</servlet-name>
     <url-pattern>/UploadServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TextSearchServlet</display-name>
+    <servlet-name>TextSearchServlet</servlet-name>
+    <servlet-class>com.tyl.servlet.TextSearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TextSearchServlet</servlet-name>
+    <url-pattern>/TextSearchServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DetailServlet</display-name>
+    <servlet-name>DetailServlet</servlet-name>
+    <servlet-class>com.tyl.servlet.DetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DetailServlet</servlet-name>
+    <url-pattern>/DetailServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NextServlet</display-name>
+    <servlet-name>NextServlet</servlet-name>
+    <servlet-class>com.tyl.servlet.NextServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NextServlet</servlet-name>
+    <url-pattern>/NextServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BackServlet</display-name>
+    <servlet-name>BackServlet</servlet-name>
+    <servlet-class>com.tyl.servlet.BackServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BackServlet</servlet-name>
+    <url-pattern>/BackServlet</url-pattern>
   </servlet-mapping>
 </web-app>

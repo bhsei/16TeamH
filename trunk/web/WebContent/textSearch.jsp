@@ -41,12 +41,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">图像检索</a>
+          <a class="navbar-brand" href="#">金庸武侠小说检索</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="textSearch.jsp">金庸小说检索</a></li>
-           
+            <li class="active"><a href="imageSearch.jsp">图像检索</a></li>
+            
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -55,22 +55,21 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1>图片检索</h1>
+        <h1>文本检索</h1>
         
       </div>
 		<div class="modal-body">
-         <form action="UploadServlet" method="POST" enctype="multipart/form-data">
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">请选择上传的图片:</label>
-            <input type="file" name="file" class="form-control" >
-          </div>
-          <div class="form-group col-sm-offset-5 col-sm-10" >
-            <input type="submit" value="上传" class=""/> 
-          </div>
+         <form action="TextSearchServlet" method="POST" >
+          <input type="text" class="form-control" placeholder="Text input" name="query">
+          </br>
+           <div class="form-group">
+		    <div class="col-sm-offset-5 col-sm-10">
+		      <button type="submit" class="btn btn-default">查询</button>
+		    </div>
+		  </div>
         </form>
       </div>
     </div><!-- /.container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
