@@ -126,7 +126,7 @@ public class SearchImages {
 	        LireFeature lf;
 	        try {
 	            lf = (LireFeature) CEDD.class.newInstance();
-	            String[] cls = d.getValues("featureCEDD");
+	            String[] cls = d.getValues("CEDD");
 	            if (cls != null && cls.length > 0) {
 	                lf.setStringRepresentation(cls[0]);
 
