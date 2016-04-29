@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <link rel="icon" href="ico/1.ico">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>金庸小说检索</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -51,7 +51,10 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-
+<script>
+	
+	
+</script>
     <div class="container">
 
       <div class="starter-template">
@@ -59,8 +62,8 @@
         
       </div>
 		<div class="modal-body">
-         <form action="TextSearchServlet" method="POST" >
-          <input type="text" class="form-control" placeholder="Text input" name="query">
+         <form action="TextSearchServlet" method="POST" ">
+          <input type="text" class="form-control" placeholder="Text input" name="query" id="query">
           </br>
            <div class="form-group">
 		    <div class="col-sm-offset-5 col-sm-10">

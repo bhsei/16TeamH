@@ -51,6 +51,9 @@ public class SearchText {
 			QueryParser parser = new QueryParser(Version.LUCENE_31, field, analyzer);
 			queryString = queryString.trim();
 			if (queryString.length() == 0) {
+				System.out.println("============query 为空");
+				searcher.close();
+			    reader.close();
 		        return null;
 		    }
 			Query query = parser.parse(queryString);

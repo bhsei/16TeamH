@@ -79,7 +79,12 @@ public class IndexImages {
 			IndexWriter writer = new IndexWriter(dir, iwc);
 			String[] files = docDir.list();
 			for (int i = 0; i < files.length; i++) {
-	            indexDocs(writer, new File(docDir, files[i]));
+				try {
+					indexDocs(writer, new File(docDir, files[i]));
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+	            
 	        }
 			//indexDocs(writer, docDir);
 
@@ -107,6 +112,9 @@ public class IndexImages {
 		BufferedImage bimg;
 		try {
 			bimg = ImageIO.read(file);
+			if (bimg == null){
+				return;
+			}
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,9 +57,11 @@ public class UploadServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		String basePath = request.getSession().getServletContext().getRealPath("") ;
 		ServletConfig config = this.getServletConfig();
 		SmartUpload mySmartUpload = new SmartUpload();//上传图片的工具类
+		
         mySmartUpload.initialize(config, request, response);// 初始化
         try {
             mySmartUpload.upload();// 上传
@@ -83,16 +86,27 @@ public class UploadServlet extends HttpServlet {
             //生成保存图片的路径，File.separator是个跨平台的分隔符
             System.out.println(imagePath);
             f1.saveAs(imagePath);// 保存图片到这个目录下
-           
+            System.out.println(mySmartUpload.getRequest().getParameter("types") + "-----------");
             BufferedImage bimg;
+            Date start = new Date();
 			try {
 				file = new File(imagePath);
 				bimg = ImageIO.read(file);
+				if(bimg == null)
+					return;
 				String index = basePath + File.separator + ".."+File.separator+"lucenceWeb_data\\lucenceWeb_images_index";
 				System.out.println(index + "---------");
 				IndexReader reader = IndexReader.open(FSDirectory.open(new File(index)));
-				SimpleImageSearchHits sish = new SearchImages().search(bimg, reader);
-				System.out.println(sish.length() + " sish.length() ");
+				
+				SimpleImageSearchHits sish =null;
+				if(mySmartUpload.getRequest().getParameter("types").equals("hash")){
+					sish = new SearchImages().search(bimg, reader,20);
+					System.out.println(sish.length() + " sish.length() ---1" + mySmartUpload.getRequest().getParameter("types"));
+				}else{
+					sish = new SearchImages().search(bimg, reader,48000);
+					System.out.println(sish.length() + " sish.length() ----no");
+				}
+				
 				
 				
 				List<Map> list = new ArrayList<Map>();
@@ -103,9 +117,10 @@ public class UploadServlet extends HttpServlet {
 					m.put("path", d.get("path"));
 					list.add(m);				
 				}
-
+				Date end = new Date();
+			    System.out.println(end.getTime() - start.getTime() + " total milliseconds");
 				request.setAttribute("resultList", list);
-				
+				request.setAttribute("time", (end.getTime() - start.getTime())+"");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("showImage.jsp");   
 		        dispatcher.forward(request, response);                               
 			}catch(Exception e){

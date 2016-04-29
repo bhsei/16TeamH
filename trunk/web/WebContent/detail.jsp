@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="ico/1.ico">
-    <title>Jumbotron Template for Bootstrap</title>
+    <title>金庸小说检索</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 

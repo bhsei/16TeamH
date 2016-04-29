@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="ico/1.ico">
-    <title>Jumbotron Template for Bootstrap</title>
+    <title>图像检索</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -46,11 +46,13 @@
 
   <%
 		List<Map<String,String>> list = (List<Map<String,String>>)request.getAttribute("resultList");
-    	int resultSize = list.size();
+    	String time = (String)request.getAttribute("time");
+    	int resultSize = (list.size()>100)?100:list.size();
     	
 %>
 
     <div class="container">
+    	<h2> 检索耗时：<%=time %></h2>
       <!-- Example row of columns -->
  <%
  		for(int i = 0; i < resultSize/3 ;i++ ){

@@ -27,7 +27,7 @@ import com.tyl.util.Const;
 
 public class SearchImages {
 	private TreeSet<SimpleResult> docs;
-	private int maxHits = 20;
+	
 	public SearchImages(){
 		docs = new TreeSet<SimpleResult>();
 	}
@@ -63,19 +63,30 @@ public class SearchImages {
 	}
 	/**
 	 * 
-	 * @param bimg ,the image buffer of searched picture
-	 * @param reader, index reader 
-	 * @return result hits
+	 * @param bimg
+	 * @param reader
+	 * @return
 	 */
 	public SimpleImageSearchHits search(BufferedImage bimg, IndexReader reader){
-		LireFeature lireFeature = null;
+		return search(bimg, reader, 20);
+	}
 		
+	
+	/**
+	 * 
+	 * @param bimg ,the image buffer of searched picture
+	 * @param reader, index reader 
+	 * @param maxHits ,the max number of hits 
+	 * @return result hits
+	 */
+	public SimpleImageSearchHits search(BufferedImage bimg, IndexReader reader, int maxHits){
+		LireFeature lireFeature = null;		
 		SimpleImageSearchHits searchHits = null;
 		try {
 			lireFeature = (LireFeature) CEDD.class.newInstance();
 			lireFeature.extract(bimg);
-			float maxDistance = findSimilar(reader, lireFeature);
-			searchHits = new SimpleImageSearchHits(this.docs, maxDistance,this.maxHits);
+			float maxDistance = findSimilar(reader, lireFeature,maxHits);
+			searchHits = new SimpleImageSearchHits(this.docs, maxDistance,maxHits);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,7 +94,7 @@ public class SearchImages {
 		
 		return searchHits;
 	}
-	private float findSimilar(IndexReader reader, LireFeature lireFeature) throws IOException {
+	private float findSimilar(IndexReader reader, LireFeature lireFeature, int maxHits) throws IOException {
         float maxDistance = -1f, overallMaxDistance = -1f;
         boolean hasDeletions = reader.hasDeletions();
 
@@ -141,7 +152,7 @@ public class SearchImages {
 	        } 
 	        
             
-	        System.out.println("getDistance(Document d, LireFeature lireFeature) " + distance);
+	        //System.out.println("getDistance(Document d, LireFeature lireFeature) " + distance);
 	        return distance;
 	    }
 

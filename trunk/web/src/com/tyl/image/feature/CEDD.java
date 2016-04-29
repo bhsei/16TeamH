@@ -68,6 +68,8 @@ public class CEDD implements LireFeature {
     // Apply filter
     // signature changed by mlux
     public void extract(BufferedImage image) {
+    	if (image == null)
+    		return;
         Fuzzy10Bin Fuzzy10 = new Fuzzy10Bin(false);
         Fuzzy24Bin Fuzzy24 = new Fuzzy24Bin(false);
         RGB2HSV HSVConverter = new RGB2HSV();

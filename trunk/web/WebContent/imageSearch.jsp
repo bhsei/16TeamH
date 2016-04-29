@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <link rel="icon" href="ico/1.ico">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>图像检索</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +22,7 @@
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+  
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -51,7 +51,15 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-
+<script type="text/javascript">
+	function f(val){
+		if(val == 1){
+			document.getElementById("hd").value ="hash";
+		}else{
+			document.getElementById("hd").value ="nohash";
+		}
+	}
+</script>
     <div class="container">
 
       <div class="starter-template">
@@ -64,8 +72,10 @@
             <label for="recipient-name" class="control-label">请选择上传的图片:</label>
             <input type="file" name="file" class="form-control" >
           </div>
+          <input type = "hidden" name ="types" id="hd" value= "1"/> 
           <div class="form-group col-sm-offset-5 col-sm-10" >
-            <input type="submit" value="上传" class=""/> 
+            <input type="submit" value="上传_h" class="" onclick="f(1)"/> 
+            <input type="submit" value="上传_n" class="" onclick="f(2)"/> 
           </div>
         </form>
       </div>
@@ -75,9 +85,9 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    
 </body>
 </html>
